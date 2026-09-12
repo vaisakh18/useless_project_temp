@@ -14,37 +14,192 @@
 - Member 2: [Vaisakh Ajithan] - [Toc H Institute of Science and Technology]
 
 ### Project Description
-[2-3 lines about what your project does]
+[Love404 is a fun, browser-based AI Breakup Predictor that uses image
+recognition to understand what has been uploaded and then generates a
+completely questionable prediction based on the detected context.
+
+Upload a couple photo, individual subject photos, fruits, animals, food,
+vehicles, or other recognizable objects. The application automatically
+detects the context using AI and generates humorous, context-specific
+results. The prediction itself is intentionally fake and exists purely
+for entertainment.]
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+[Relationships are complicated.
+
+People spend hours wondering:
+
+"Are we actually compatible?"
+
+"Why did they reply with 'K'?"
+
+"Who is going to cause the next argument?"
+
+"Is this relationship going to survive?"
+
+Unfortunately, nobody has invented a completely unnecessary machine that
+can answer these questions from a random photograph.
+
+So we decided to solve this extremely important problem that nobody
+asked us to solve.]
 
 ### The Solution (that nobody asked for)
+Love404 takes an uploaded image and lets AI figure out what is actually
+in it.
+
+If it detects two people, it generates a ridiculous relationship/breakup
+prediction.
+
+If it detects animals, fruits, food, vehicles, or other subjects, the
+application automatically switches to a matching context and generates
+equally questionable results.
+
+For example:
+
+👤 + 👤 → Relationship / Breakup Analysis
+
+🍎 + 🍎 → Fruit Compatibility
+
+🐶 + 🐱 → Animal Compatibility
+
+🍕 + 🍔 → Food Compatibility
+
+🚗 + 🏍️ → Vehicle Compatibility
+
+The image recognition is real, but the prediction is deliberately fake.
+
+Real AI detection + fake AI opinions = Love404.
 [https://useless-project-temp-tawny.vercel.app/]
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
+- [Languages used : JavaScript - HTML - CSS]
+- [Frameworks - React - Vite]
+- [Libraries / AI - TensorFlow.js - COCO-SSD / browser-based object detection - React hooks and browser APIs]
+- [Tools used - Kiro - Visual Studio Code - Git - GitHub - Vercel - Chrome / modern web browsers]
 
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+[Installation
+
+Clone the repository:
+
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+
+Navigate into the project:
+
+cd Love404
+
+Install dependencies:
+
+npm install]
 
 # Run
-[commands]
+[Start the development server:
+
+npm run dev]
 
 ### Project Documentation
 For Software:
+How the Application Works
+
+Love404 follows a simple browser-based pipeline:
+
+User
+  ↓
+Upload Image
+  ↓
+Browser-Side AI Image Detection
+  ↓
+Identify People / Objects / Context
+  ↓
+Validate Uploaded Subjects
+  ↓
+Select Context-Specific Analysis
+  ↓
+Generate Fake Random Metrics
+  ↓
+Display Humorous Results
+  ↓
+Generate Full Report
+  ↓
+Share / Download Results
+
+Image Analysis
+
+The application does not ask the user to manually select what is present
+in the image.
+
+Instead, the uploaded image is processed by the browser-side image
+recognition model.
+
+The application can identify supported objects and group them into
+contexts such as:
+
+Human
+
+Animal
+
+Fruit
+
+Food
+
+Vehicle
+
+Nature / Plant
+
+Object
+
+Unknown
+
+Human Validation
+
+For couple-photo mode:
+
+Exactly 2 people → valid relationship analysis
+
+Exactly 1 person → error asking for both people
+
+3 or more people → error because the relationship has become a
+group project
+
+No people → the application checks whether another supported
+context can be identified
+
+For individual upload mode:
+
+Each image is analyzed separately
+
+Each subject is automatically identified
+
+Matching contexts are allowed
+
+Different contexts produce a humorous context-mismatch message
+
+Fake Prediction Engine
+
+After the image context is identified, the application generates
+fictional metrics.
+
+For human relationship analysis, examples include:
+
+Relationship Strength
+
+Breakup Probability
+
+Drama Potential
+
+Ghosting Risk
+
+Vibe Compatibility
+
+Communication Score
+
+These values are intentionally generated for entertainment and have no
+scientific or psychological validity.
 
 # Screenshots (Add at least 3)
 ![Screenshot1](Add screenshot 1 here with proper name)
