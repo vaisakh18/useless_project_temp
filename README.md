@@ -2,19 +2,19 @@
 
 
 
-# [LOVE404] 🎯
+# LOVE404 
 
 
 ## Basic Details
-### Team Name: [HackHive]
+### Team Name:HackHive
 
 
 ### Team Members
-- Team Lead: [Neha Arun] - [Toc H Institute of Science and Technology]
-- Member 2: [Vaisakh Ajithan] - [Toc H Institute of Science and Technology]
+- Team Lead: Neha Arun - Toc H Institute of Science and Technology
+- Member 2: Vaisakh Ajithan - Toc H Institute of Science and Technology
 
 ### Project Description
-[Love404 is a fun, browser-based AI Breakup Predictor that uses image
+Love404 is a fun, browser-based AI Breakup Predictor that uses image
 recognition to understand what has been uploaded and then generates a
 completely questionable prediction based on the detected context.
 
@@ -22,10 +22,10 @@ Upload a couple photo, individual subject photos, fruits, animals, food,
 vehicles, or other recognizable objects. The application automatically
 detects the context using AI and generates humorous, context-specific
 results. The prediction itself is intentionally fake and exists purely
-for entertainment.]
+for entertainment.
 
 ### The Problem (that doesn't exist)
-[Relationships are complicated.
+Relationships are complicated.
 
 People spend hours wondering:
 
@@ -41,7 +41,7 @@ Unfortunately, nobody has invented a completely unnecessary machine that
 can answer these questions from a random photograph.
 
 So we decided to solve this extremely important problem that nobody
-asked us to solve.]
+asked us to solve.
 
 ### The Solution (that nobody asked for)
 Love404 takes an uploaded image and lets AI figure out what is actually
@@ -69,21 +69,21 @@ For example:
 The image recognition is real, but the prediction is deliberately fake.
 
 Real AI detection + fake AI opinions = Love404.
-[https://useless-project-temp-tawny.vercel.app/]
+https://useless-project-temp-tawny.vercel.app/
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used : JavaScript - HTML - CSS]
-- [Frameworks - React - Vite]
-- [Libraries / AI - TensorFlow.js - COCO-SSD / browser-based object detection - React hooks and browser APIs]
-- [Tools used - Kiro - Visual Studio Code - Git - GitHub - Vercel - Chrome / modern web browsers]
+- Languages used : JavaScript - HTML - CSS
+- Frameworks - React - Vite
+- Libraries / AI - TensorFlow.js - COCO-SSD / browser-based object detection - React hooks and browser APIs
+- Tools used - Kiro - Visual Studio Code - Git - GitHub - Vercel - Chrome / modern web browsers
 
 
 ### Implementation
 For Software:
 # Installation
-[Installation
+Installation
 
 Clone the repository:
 
@@ -95,12 +95,12 @@ cd Love404
 
 Install dependencies:
 
-npm install]
+npm install
 
 # Run
-[Start the development server:
+Start the development server:
 
-npm run dev]
+npm run dev
 
 ### Project Documentation
 For Software:
