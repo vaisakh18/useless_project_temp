@@ -2,17 +2,16 @@
 
 
 
-# [Project Name] 🎯
+# [LOVE404] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [HackHive]
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [Neha Arun] - [Toc H Institute of Science and Technology]
+- Member 2: [Vaisakh Ajithan] - [Toc H Institute of Science and Technology]
 
 ### Project Description
 [2-3 lines about what your project does]
