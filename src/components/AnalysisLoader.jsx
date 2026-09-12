@@ -1,57 +1,47 @@
 import { useState, useEffect, useRef } from 'react'
-import { generatePrediction } from '../utils/predictionEngine.js'
-
-const STEPS = [
-  { main: 'Scanning emotional bandwidth...', sub: 'Emotional bandwidth: questionable' },
-  { main: 'Analyzing micro-expressions and eye contact...', sub: 'Eye contact detected. Suspicious.' },
-  { main: 'Measuring vibe synchronization...', sub: 'Vibes: present. Barely.' },
-  { main: 'Checking relationship WiFi stability...', sub: 'Signal found. Barely.' },
-  { main: "Checking who replies 'K'...", sub: 'K detected.' },
-  { main: 'Calculating unnecessary drama quotients...', sub: 'This may take a while.' },
-  { main: 'Consulting absolutely nobody...', sub: 'Scientific accuracy: 0%' },
-  { main: 'Preparing result...', sub: 'Drama levels: concerning' },
-]
-
-const TERMINAL_LINES = [
-  '> loading relationship_model...',
-  '> checking vibe_matrix...',
-  '> analyzing drama_index...',
-  '> consulting absolutely nobody...',
-  '> result preparation complete.',
-]
+import { getContextResult } from '../utils/contextEngine.js'
+import { getContent } from '../utils/contextContent.js'
 
 const TOTAL_DURATION = 5200
-const STEP_INTERVAL = 650
+const STEP_INTERVAL  = 650
 
-export default function AnalysisLoader({ imageObjectUrl, onComplete }) {
-  const [progress, setProgress] = useState(0)
-  const [stepIndex, setStepIndex] = useState(0)
-  const [msgVisible, setMsgVisible] = useState(true)
-  const [terminalLines, setTerminalLines] = useState([])
-  const [showComplete, setShowComplete] = useState(false)
+export default function AnalysisLoader({
+  context = 'human',
+  uploadMode,
+  imageObjectUrl,
+  personA,
+  personB,
+  onComplete,
+}) {
+  const content = getContent(context)
+  const steps   = content.loaderSteps
+  const terminalLines = content.terminalLines
+
+  const [progress,       setProgress]       = useState(0)
+  const [stepIndex,      setStepIndex]       = useState(0)
+  const [msgVisible,     setMsgVisible]      = useState(true)
+  const [visibleTerminal, setVisibleTerminal] = useState([])
+  const [showComplete,   setShowComplete]    = useState(false)
+  const [displayedStep,  setDisplayedStep]   = useState(steps[0])
   const completedRef = useRef(false)
 
-  // Animated message transition: fade out → swap → fade in
-  const [displayedStep, setDisplayedStep] = useState(STEPS[0])
-
+  // Animated message swap
   useEffect(() => {
     setMsgVisible(false)
     const t = setTimeout(() => {
-      setDisplayedStep(STEPS[stepIndex])
+      setDisplayedStep(steps[stepIndex % steps.length])
       setMsgVisible(true)
     }, 200)
     return () => clearTimeout(t)
-  }, [stepIndex])
+  }, [stepIndex, steps])
 
-  // Terminal lines appear one by one, staggered
+  // Terminal lines appear one by one
   useEffect(() => {
-    setTerminalLines([])
-    TERMINAL_LINES.forEach((line, i) => {
-      setTimeout(() => {
-        setTerminalLines(prev => [...prev, line])
-      }, 400 + i * 900)
+    setVisibleTerminal([])
+    terminalLines.forEach((line, i) => {
+      setTimeout(() => setVisibleTerminal(prev => [...prev, line]), 400 + i * 900)
     })
-  }, [])
+  }, [context]) // re-run when context changes
 
   useEffect(() => {
     completedRef.current = false
@@ -67,7 +57,7 @@ export default function AnalysisLoader({ imageObjectUrl, onComplete }) {
     }, 50)
 
     const stepInterval = setInterval(() => {
-      setStepIndex(prev => (prev + 1) % STEPS.length)
+      setStepIndex(prev => prev + 1)
     }, STEP_INTERVAL)
 
     const completeTimer = setTimeout(() => {
@@ -77,8 +67,7 @@ export default function AnalysisLoader({ imageObjectUrl, onComplete }) {
       clearInterval(stepInterval)
       setProgress(100)
       setShowComplete(true)
-      const result = generatePrediction()
-      // Show "ANALYSIS COMPLETE" beat, then reveal results
+      const result = getContextResult(context)
       setTimeout(() => onComplete(result), 900)
     }, TOTAL_DURATION)
 
@@ -87,54 +76,74 @@ export default function AnalysisLoader({ imageObjectUrl, onComplete }) {
       clearInterval(stepInterval)
       clearTimeout(completeTimer)
     }
-  }, [onComplete])
+  }, [onComplete, context])
+
+  // What to show in the orb
+  const orbImage = imageObjectUrl ?? (personA?.url ?? personB?.url ?? null)
+
+  // For individual mode, show both thumbs side-by-side if available
+  const showDual = uploadMode === 'individual' && personA?.url && personB?.url
 
   return (
     <section className="loader-section view-container">
 
-      {/* Central orb with rotating rings */}
-      <div className="orb-wrap">
-        {/* Rings */}
-        <div className="orb-ring orb-ring--1" aria-hidden="true" />
-        <div className="orb-ring orb-ring--2" aria-hidden="true" />
-        <div className="orb-ring orb-ring--3" aria-hidden="true" />
-        {/* Core orb */}
-        <div className="orb-core" aria-hidden="true">
-          {imageObjectUrl ? (
-            <>
-              <img src={imageObjectUrl} alt="" className="orb-thumb" />
+      {/* Central orb / dual thumbnails */}
+      {showDual ? (
+        <div className="loader-dual-wrap">
+          <div className="loader-dual-orb">
+            <div className="orb-ring orb-ring--1" aria-hidden="true" />
+            <div className="orb-ring orb-ring--2" aria-hidden="true" />
+            <div className="orb-core orb-core--dual" aria-hidden="true">
+              <img src={personA.url} alt="" className="orb-thumb orb-thumb--half" />
+              <img src={personB.url} alt="" className="orb-thumb orb-thumb--half" />
               <div className="scanner-beam" aria-hidden="true" />
-            </>
-          ) : (
-            <span className="orb-icon" aria-hidden="true">💔</span>
+            </div>
+          </div>
+          {(personA.name || personB.name) && (
+            <div className="loader-dual-names">
+              <span>{personA.name || 'Person A'}</span>
+              <span className="loader-dual-vs">vs</span>
+              <span>{personB.name || 'Person B'}</span>
+            </div>
           )}
         </div>
-      </div>
-
-      {/* Completion overlay */}
-      {showComplete && (
-        <div className="loader-complete-badge">
-          ✓ ANALYSIS COMPLETE
+      ) : (
+        <div className="orb-wrap">
+          <div className="orb-ring orb-ring--1" aria-hidden="true" />
+          <div className="orb-ring orb-ring--2" aria-hidden="true" />
+          <div className="orb-ring orb-ring--3" aria-hidden="true" />
+          <div className="orb-core" aria-hidden="true">
+            {orbImage ? (
+              <>
+                <img src={orbImage} alt="" className="orb-thumb" />
+                <div className="scanner-beam" aria-hidden="true" />
+              </>
+            ) : (
+              <span className="orb-icon" aria-hidden="true">💔</span>
+            )}
+          </div>
         </div>
       )}
 
-      <h2 className="loader-title">Analyzing your relationship…</h2>
+      {showComplete && (
+        <div className="loader-complete-badge">✓ ANALYSIS COMPLETE</div>
+      )}
 
-      {/* Animated message transition */}
+      <h2 className="loader-title">Analyzing{context !== 'human' ? ` your ${context}` : ' your relationship'}…</h2>
+
       <div
         className={`loader-status ${msgVisible ? 'loader-status--visible' : 'loader-status--hidden'}`}
         aria-live="polite"
         aria-atomic="true"
       >
         <span className="loader-status-dot" />
-        <span className="loader-status-main">{displayedStep.main}</span>
+        <span className="loader-status-main">{displayedStep?.main}</span>
       </div>
 
       <div className={`loader-status-sub ${msgVisible ? 'loader-status--visible' : 'loader-status--hidden'}`}>
-        {displayedStep.sub}
+        {displayedStep?.sub}
       </div>
 
-      {/* Progress bar with shimmer */}
       <div
         className="loader-progress-track"
         role="progressbar"
@@ -148,9 +157,8 @@ export default function AnalysisLoader({ imageObjectUrl, onComplete }) {
       </div>
       <div className="loader-progress-label">{Math.round(progress)}%</div>
 
-      {/* Terminal */}
       <div className="loader-terminal" aria-hidden="true">
-        {terminalLines.map((line, i) => (
+        {visibleTerminal.map((line, i) => (
           <div key={i} className="loader-terminal-line">{line}</div>
         ))}
       </div>
