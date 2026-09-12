@@ -202,50 +202,26 @@ These values are intentionally generated for entertainment and have no
 scientific or psychological validity.
 
 # Screenshots (Add at least 3)
-![Screenshot1](Add screenshot 1 here with proper name)
-*Add caption explaining what this shows*
+![https://github.com/vaisakh18/useless_project_temp/blob/main/Screenshot%202026-09-12%20102823.png] (Home Page)
 
-![Screenshot2](Add screenshot 2 here with proper name)
-*Add caption explaining what this shows*
+![https://github.com/vaisakh18/useless_project_temp/blob/main/Screenshot%202026-09-12%20102846.png] (Upload Photo)
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
+![https://github.com/vaisakh18/useless_project_temp/blob/main/Screenshot%202026-09-12%20102951.png] (Result)
 
 # Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
+![https://github.com/vaisakh18/useless_project_temp/blob/main/ChatGPT%20Image%20Sep%2012%2C%202026%2C%2010_44_52%20AM.png] 
+The architecture of Love404 illustrates the complete flow of the application, from image upload to the generation and sharing of context-aware results. Users upload a couple photo or individual subject images through the React + Vite frontend. The images are analyzed directly in the browser using TensorFlow.js and COCO-SSD to detect people and other objects and determine the appropriate context, such as human, fruit, animal, food, vehicle, or object. The detected context is then validated before being passed to the fake prediction engine, which generates humorous random scores and context-specific comments. Finally, the results are displayed through the results dashboard, with options to generate, download, copy, print, and share the full report. All image processing is performed client-side without uploading images to a backend server.
 
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
 # Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
+[https://drive.google.com/file/d/1c5MlDwvp9wMiG3b9Qgvj4I3h6FCgiYiG/view?usp=drivesdk]
+The demo video demonstrates image upload, automatic AI detection,validation, context-aware analysis, results, full report generation, andsharing/download functionality.
 
-# Additional Demos
-[Add any extra demo materials/links]
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- [Neha Arun]: [Project concept, React/Vite application development, UI/UX design, image-analysis integration, result-generation logic, and deployment.]
+- [Vaisakh Ajithan]: [AI image detection, context classification, validation logic, and testing,Animations, responsive design, report generation, documentation, testing, and presentation.]
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
