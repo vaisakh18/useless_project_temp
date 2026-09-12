@@ -21,7 +21,7 @@
 [What ridiculous problem are you solving?]
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+[https://useless-project-temp-tawny.vercel.app/]
 
 ## Technical Details
 ### Technologies/Components Used
